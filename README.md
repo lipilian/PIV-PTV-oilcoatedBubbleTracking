@@ -11,7 +11,19 @@
 
 - [ ] Remove the background noise for bubble trajectory tracking.
 
+1)	Call image sequence: ‘file’-‘import’-‘image sequence’
+2)	Compute background: ‘image’-‘stacks’-‘z project’-‘projection type:min intensity’
+3)	Remove background: ‘process’-‘image calculator’-‘operatioin:substract’
+4)	Sharpen the contrast: ‘process-‘enhance contrast’-‘saturated pixels:0.3%’
+5)	Save filtered sequence: ‘file’-‘save as’-‘image sequence’-‘format:jpeg’
 
+- [ ] PTV point detection, Gaussian kernel blob detection.
+
+- [ ] Trajectory computing.
+
+- [ ] PIV-PTV Combine.
+
+- [ ] Trajectory analysis.
 
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
@@ -28,10 +40,10 @@
 | 14G          | 22G          | 20                      | 4.07     | 0.49 | 10142220X-5  | 4.14609406  | <ul><li>- [ ] finished </li>                     |1933-2249                     |
 | 14G          | 22G          | 30                      | 4.39     | 0.61 | 10142230X-2  | 4.45358163  | <ul><li>- [ ] finished </li>                     |590-899                     |
 | 14G          | 22G          | 30                      | 4.39     | 0.61 | 10142230X-4  | 4.42757525  | <ul><li>- [ ] finished </li>                     |1472-1799                     |
-| 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-2  | 7.028534846 | <ul><li>- [ ] finished </li>                    |                     |
-| 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-4  | 6.219493989 | <ul><li>- [ ] finished </li>                     |                     |
-| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-1 | 13.3943055  | <ul><li>- [ ] finished </li>                    |                     |
-| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [ ] finished </li>                     |                     |
+| 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-2  | 7.028534846 | <ul><li>- [ ] finished </li>                    |603-899                     |
+| 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-4  | 6.219493989 | <ul><li>- [ ] finished </li>                     |1509-1799                     |
+| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-1 | 13.3943055  | <ul><li>- [ ] finished </li>                    |148-449                     |
+| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [ ] finished </li>                     |1067-1349                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-2 | 24.65708158 | <ul><li>- [ ] finished </li>                    |                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-3 | 19.83963865 | <ul><li>- [ ] finished </li>                    |                     |
 | 10G          | 22G          | 30.49                   | 4.04     | 0.32 | 100102230X-2 | 29.53605068 | <ul><li>- [ ] finished </li>                     |                     |
