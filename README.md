@@ -7,9 +7,9 @@
 
 - [x] run piv processing for all case.(09/19/2020)
 
-- [ ] Detect the Raising period.
+- [x] Detect the Raising period.
 
-- [ ] Remove the background noise for bubble trajectory tracking.
+- [x] Remove the background noise for bubble trajectory tracking.
 
 1)	Call image sequence: ‘file’-‘import’-‘image sequence’
 2)	Compute background: ‘image’-‘stacks’-‘z project’-‘projection type:min intensity’
