@@ -15,10 +15,11 @@ for name in fileNames:
     path2 = os.path.join('data', subname1, subname2)
     if not os.path.exists(path2):
         os.makedirs(path2)
-if not os.path.exists('data/airbubble'):
-    os.makedirs('data/airbubble')
+if not os.path.exists('data/AirBubble'):
+    os.makedirs('data/AirBubble')
     for i in range(4):
-        path = os.path.join('data/airbubble', str(i + 1))
+        path = os.path.join('data/AirBubble', str(i + 1))
         os.makedirs(path)
         
+
 # %%
