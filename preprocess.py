@@ -26,27 +26,29 @@ for k in tqdm(range(len(fileNames))):
     for i in range(startFrame, endFrame + 1):
         ss = '%06d' % i
         for m, path in enumerate(LeftImagePath):
-            if ss in path:
+            aa = path.split('X')[-1]
+            if ss in aa:
                 validLeftPath.append(path)
         for m, path in enumerate(RightImagePath):
-            if ss in path:
+            aa = path.split('X')[-1]
+            if ss in aa:
                 validRightPath.append(path)
     validLeftPath = sorted(validLeftPath)
     validRightPath = sorted(validRightPath)
 
     Left = [cv2.imread(pp, -1) for pp in validLeftPath]
     Left = np.stack(Left, axis = 2)
-    LeftBackground = np.min(Left, axis = 2).astype(np.uint16)
+    LeftBackground = np.median(Left, axis = 2).astype(np.uint16)
     for i in range(Left.shape[-1]):
-        tempImg = Left[:,:,i] - LeftBackground
+        tempImg = cv2.subtract(Left[:,:,i], LeftBackground)
         ImgSavingPath = os.path.join('data',filename.split('-')[0],filename.split('-')[1],'Left%04d.tif' % i)
         cv2.imwrite(ImgSavingPath, tempImg)
 
     Right = [cv2.imread(pp, -1) for pp in validRightPath]
     Right = np.stack(Right, axis = 2)
-    RightBackground = np.min(Right, axis = 2).astype(np.uint16)
+    RightBackground = np.median(Right, axis = 2).astype(np.uint16)
     for i in range(Right.shape[-1]):
-        tempImg = Right[:,:, i] - RightBackground
+        tempImg = cv2.subtract(Right[:,:, i], RightBackground)
         ImgSavingPath = os.path.join('data',filename.split('-')[0],filename.split('-')[1], 'Right%04d.tif' % i)
         cv2.imwrite(ImgSavingPath, tempImg)
 

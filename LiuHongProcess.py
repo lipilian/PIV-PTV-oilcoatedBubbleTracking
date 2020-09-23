@@ -10,60 +10,108 @@ import trackpy as tp
 import numpy as np
 import glob
 from tqdm import tqdm
-# %% parameter need to set
-ImagePath = 'C:/Users/liuhong2/Desktop/200610_Prelim/PTV_LiuHong/P3O190/2nd/Right/'
-frames = pims.open(ImagePath + '*.tif')
-#f = tp.locate(frames[0], estimateFeatureSize)
-print('Valid frames length is %d' %len(frames))
-
-# %% test with parameter (First run to find the min Mass)
-estimateFeatureSize = 45 # must be odd numer
-minMass = 200 # calculate the integrate minMass intensity
-f = tp.locate(frames[110], estimateFeatureSize)
-# plot the mass diagram to check the orginal distribution of the mass histogram
-fig, ax = plt.subplots()
-ax.hist(f['mass'], bins=20)
-ax.set(xlabel='mass', ylabel='count');
-# %% second run and ask user input minmass
-minMass = 80000
-f = tp.locate(frames[100], estimateFeatureSize, minmass= minMass)
-tp.annotate(f, frames[100]);
-# %% 
-f = f.sort_values(by='mass', ascending=False).iloc[0]
-# %% check subpixel accuracy
-tp.subpx_bias(f)
-
-# %% locate feature in all frames
-f = tp.batch(frames, estimateFeatureSize, minmass = minMass)
+import os
+# %% parameters
+data = pd.read_csv('experiment_info.csv')
+fileNames = list(data['ID'])
+framesInfo = list(data['StartFrame-EndFrame'])
+data
 # %%
-t = tp.link(f, 60, memory=3)
+index = 11
+CaseName = fileNames[index]
+print(CaseName)
+startFrame = int(framesInfo[index].split('-')[0])
+endFrame = int(framesInfo[index].split('-')[1])
+testFrame = 80
+
+
+# %% define feature detect function
+def Detect(estimateFeatureSize, CameraName):
+    ImagePath = os.path.join('data', CaseName.split('-')[0], CaseName.split('-')[1])
+    Path = os.path.join(ImagePath, CameraName + '*.tif')
+    frames = pims.open(Path)
+    print('Valid frames length is %d' %len(frames))
+    # check start frame and end frame with total frames number
+    if len(frames) != (endFrame - startFrame + 1):
+        print('Invalid frames length')
+        return
+    # find five brightest
+    f = tp.locate(frames[testFrame], estimateFeatureSize)
+    TopFive = np.argsort(f['mass'])[-5:]
+    TopFiveArray = f['mass'][TopFive]
+    # show mass histogram
+    # show subpixel accuracy of the detection 
+    minMass = list(TopFiveArray)[0]
+    f = tp.locate(frames[testFrame], estimateFeatureSize, minmass= minMass)
+    plt.figure()
+    tp.annotate(f, frames[testFrame]);
+    # run batch processing for all frames
+    f = tp.batch(frames, estimateFeatureSize, minmass = minMass)
+    return f, frames
+# define link function
+def Link(searchRange, memory, minFrames):
+    t = tp.link(f, search_range = searchRange, memory = memory)
+    t1 = tp.filter_stubs(t, minFrames)
+    plt.figure()
+    tp.plot_traj(t1)
+    return t1
+# filter the trajectory
+def filterTrajectory(t1, minDistance, minFrames):
+    Ntrajs = np.max(np.array(t1['particle'])) + 1
+    print('There are %d trajectories' % Ntrajs)
+    t2 = t1[0:0]
+    for i in range(Ntrajs):
+        tNew = t1[t1['particle']==i]
+        if(len(tNew) < minFrames):
+            continue
+        distData = tp.motion.msd(tNew,1,1,len(tNew))
+        dist = distData.iloc[-1,:]['msd']
+        print('partile index:' , i ,' traveling distance: ', dist)
+        if dist > minDistance**2:
+            t2 = t2.append(tNew)
+    return t2
+
+# %% run trajectory finding 
+estimateFeatureSizeLeft = 21
+CameraName = 'Left'
+tp.quiet()
+f, frames = Detect(estimateFeatureSizeLeft, CameraName)
+#  Link trajectory
+searchRange = 40
+memory = 10
+minFrames = 100
+t = Link(searchRange, memory, minFrames)
+#  filter trajectory by minimum moving distance
+minFrames = 50
+minDistance = 2000
+t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
-tp.annotate(t[t['frame'] == 0], frames[0]);
+tp.plot_traj(t)
+t.to_csv('./' + CaseName + 'Left.csv')
+listParticle = list(t['particle'])
+listParticle = list(set(listParticle))
+print('There are %d trajectories' % len(listParticle))
+
+
+# %% run trajectory finding for Right
+estimateFeatureSizeRight = 21
+CameraName = 'Right'
+tp.quiet()
+f, frames = Detect(estimateFeatureSizeRight, CameraName)
+#  
+searchRange = 40
+memory = 10
+minFrames = 100
+t = Link(searchRange, memory, minFrames)
+#  filter trajectory by minimum moving distance
+minFrames = 50
+minDistance = 1500
+t = filterTrajectory(t, minDistance, minFrames)
+plt.figure()
+tp.plot_traj(t)
+t.to_csv('./' + CaseName + 'Right.csv')
+listParticle = list(t['particle'])
+listParticle = list(set(listParticle))
+print('There are %d trajectories' % len(listParticle))
+
 # %%
-t1 = tp.filter_stubs(t, 100)
-tp.plot_traj(t1)
-# %%
-t1.to_csv('./Right_P3O190_2nd.csv')
-
-#%% sort and filter traj to avoid not moving particles
-'''
-Ntrajs = np.max(np.array(t1['particle'])) + 1
-minMoveDistance = 1000
-print('there are %s trajectories' % Ntrajs)
-t2 = t1[0:0]
-for i in range(Ntrajs):
-    tNew = t1[t1['particle']==i]
-    if(len(tNew) < 300):
-        continue
-    distData = tp.motion.msd(tNew,1,1,len(tNew))
-    dist = distData.iloc[-1,:]['msd']
-    print('partile index:' , i ,' traveling distance: ', dist)
-    if dist > minMoveDistance:
-        t2 = t2.append(tNew)
-
-
-h = plt.figure(1, figsize=(6,12))
-tp.plot_traj(t2)
-h.savefig('images.jpg')
-t2.to_csv('./pointsData.csv')
-'''
