@@ -76,18 +76,21 @@ estimateFeatureSizeLeft = 21
 CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName)
-#  Link trajectory
-searchRange = 40
+# %% Link trajectory
+searchRange = 100
 memory = 10
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
-#  filter trajectory by minimum moving distance
+# %% filter trajectory by minimum moving distance
 minFrames = 50
 minDistance = 2000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
+#t = t[t['particle'] == 5]
 tp.plot_traj(t)
+
 t.to_csv('./' + CaseName + 'Left.csv')
+
 listParticle = list(t['particle'])
 listParticle = list(set(listParticle))
 print('There are %d trajectories' % len(listParticle))
@@ -98,12 +101,12 @@ estimateFeatureSizeRight = 21
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
-#  
+# %%
 searchRange = 40
 memory = 10
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
-#  filter trajectory by minimum moving distance
+# %%  filter trajectory by minimum moving distance
 minFrames = 50
 minDistance = 1500
 t = filterTrajectory(t, minDistance, minFrames)
