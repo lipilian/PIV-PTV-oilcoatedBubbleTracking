@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 17
+index = 19
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -37,11 +37,13 @@ def Detect(estimateFeatureSize, CameraName):
         return
     # find five brightest
     f = tp.locate(frames[testFrame], estimateFeatureSize)
-    TopTen = np.argsort(f['mass'])[-5:]
-    TopTenArray = f['mass'][TopTen]
+    mass = list(f['mass']); mass.sort()
+    minMass = (int(mass[-2]))
+    #TopTen = np.argsort(f['mass'])[-5:]
+    #TopTenArray = f['mass'][TopTen]
     # show mass histogram
     # show subpixel accuracy of the detection 
-    minMass = list(TopTenArray)[0]
+    #minMass = list(TopTenArray)[0]
     f = tp.locate(frames[testFrame], estimateFeatureSize, minmass= minMass)
     plt.figure()
     tp.annotate(f, frames[testFrame]);
@@ -71,8 +73,9 @@ def filterTrajectory(t1, minDistance, minFrames):
             t2 = t2.append(tNew)
     return t2
 
-# %% run trajectory finding 
-estimateFeatureSizeLeft = 17
+
+# %% run trajectory finding ------------------------------Left
+estimateFeatureSizeLeft = 61
 CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName)
@@ -86,12 +89,12 @@ plt.figure()
 tp.plot_traj(t1)
 '''
 # %% Link trajectory
-searchRange = 50
-memory = 20
-minFrames = 80
+searchRange = 80
+memory = 30
+minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
-minFrames = 50
+minFrames = 20
 minDistance = 2000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
@@ -105,19 +108,22 @@ listParticle = list(set(listParticle))
 print('There are %d trajectories' % len(listParticle))
 
 
+# %% ---------------------------------------- Right Camera
+
+
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 21
+estimateFeatureSizeRight = 39
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
-searchRange = 20
-memory = 10
+searchRange = 30
+memory = 20
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
 minFrames = 50
-minDistance = 1500
+minDistance = 1000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 tp.plot_traj(t)

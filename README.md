@@ -18,7 +18,7 @@
 5)	Save filtered sequence: ‘file’-‘save as’-‘image sequence’-‘format:jpeg’
 
 - [ ] PTV point detection, Gaussian kernel blob detection.
-
+1) Face the problem about the laser light too light for some frames that it hard to detect the blob shape for certain case, which cause trajectory divergent and mixing. <ul><li>- [x]  </li> solved 09/24/2020 by using predictor method, which use the recently nearby velocity to predict the next frame bubble location. For each case, the bubble size need to be rechecked by applying imageJ local maximum detection.
 - [ ] Trajectory computing.
 
 - [ ] PIV-PTV Combine.
@@ -42,11 +42,11 @@
 | 14G          | 22G          | 30                      | 4.39     | 0.61 | 10142230X-4  | 4.42757525  | <ul><li>- [x] finished </li>                     |1472-1799                     |
 | 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-2  | 7.028534846 | <ul><li>- [x] finished </li>                    |603-899                     |
 | 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-4  | 6.219493989 | <ul><li>- [x] finished </li>                     |1509-1799                     |
-| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-1 | 13.3943055  | <ul><li>- [ ] This case has some problems about LeftCamera PTV tracking, need to double check later </li>                    |148-449                     |
-| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [ ] Similar problem as above case </li>                     |1067-1349                     |
+| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-1 | 13.3943055  | <ul><li>- [ ] This case has some problems about LeftCamera PTV tracking, need to double check later (09/24/2020)</li>                    |148-449                     |
+| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [ ] Similar problem as above case (09/24/2020)</li>                     |1067-1349                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-2 | 24.65708158 | <ul><li>- [x] finished </li>                    |591-899                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-3 | 19.83963865 | <ul><li>- [x] finished </li>                    | 1079-1349                    |
-| 10G          | 22G          | 30.49                   | 4.04     | 0.32 | 100102230X-2 | 29.53605068 | <ul><li>- [ ] finished </li>                     |612-899                     |
+| 10G          | 22G          | 30.49                   | 4.04     | 0.32 | 100102230X-2 | 29.53605068 | <ul><li>- [x] Right Camera tracking get 2 trajectories, need furthur computing (09/24/2020) </li>                     |612-899                     |
 | 10G          | 22G          | 30.49                   | 4.04     | 0.32 | 100102230X-3 | 30.24797907 | <ul><li>- [ ] finished </li>                     |1058-1349                     |
 | 12G          | 22G          | 32.68                   | 4.27     | 0.43 | 100122233X-1 | 32.43544137 | <ul><li>- [ ] finished </li>                     |140-449                     |
 | 12G          | 22G          | 32.68                   | 4.27     | 0.43 | 100122233X-3 | 31.43128391 | <ul><li>- [ ] finished </li>                    |1075-1349                     |
