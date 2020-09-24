@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 14
+index = 17
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -37,7 +37,7 @@ def Detect(estimateFeatureSize, CameraName):
         return
     # find five brightest
     f = tp.locate(frames[testFrame], estimateFeatureSize)
-    TopTen = np.argsort(f['mass'])[-10:]
+    TopTen = np.argsort(f['mass'])[-5:]
     TopTenArray = f['mass'][TopTen]
     # show mass histogram
     # show subpixel accuracy of the detection 
@@ -77,17 +77,18 @@ CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName)
 # %% test prediction
+'''
 pred = tp.predict.NearestVelocityPredict()
 t = pred.link_df(f,40,memory=20)
 #t = tp.link(f, 50, memory = 20, predictor = tp.predict.NearestVelocityPredict)
 t1 = tp.filter_stubs(t, 20)
 plt.figure()
 tp.plot_traj(t1)
-
+'''
 # %% Link trajectory
 searchRange = 50
-memory = 50
-minFrames = 20
+memory = 20
+minFrames = 80
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
 minFrames = 50
@@ -110,7 +111,7 @@ CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
-searchRange = 40
+searchRange = 20
 memory = 10
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
