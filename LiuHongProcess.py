@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 11
+index = 12
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -77,7 +77,7 @@ CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName)
 # %% Link trajectory
-searchRange = 100
+searchRange = 40
 memory = 10
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
