@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 19
+index = 20
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -38,7 +38,8 @@ def Detect(estimateFeatureSize, CameraName):
     # find five brightest
     f = tp.locate(frames[testFrame], estimateFeatureSize)
     mass = list(f['mass']); mass.sort()
-    minMass = (int(mass[-2]))
+    minMass = (int((mass[-2] + mass[-1])/2))
+    print(minMass)
     #TopTen = np.argsort(f['mass'])[-5:]
     #TopTenArray = f['mass'][TopTen]
     # show mass histogram
@@ -109,7 +110,9 @@ print('There are %d trajectories' % len(listParticle))
 
 
 # %% ---------------------------------------- Right Camera
-
+f1 = tp.locate(frames[2], estimateFeatureSizeRight, 12000)
+plt.figure()
+tp.annotate(f1, frames[2]);
 
 # %% run trajectory finding for Right
 estimateFeatureSizeRight = 39
@@ -117,7 +120,7 @@ CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
-searchRange = 30
+searchRange = 80
 memory = 20
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
