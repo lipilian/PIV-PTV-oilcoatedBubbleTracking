@@ -17,12 +17,12 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 22
+index = 24
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
 endFrame = int(framesInfo[index].split('-')[1])
-testFrame = 80
+testFrame = 31
 
 
 # %% define feature detect function
@@ -76,7 +76,7 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 49
+estimateFeatureSizeLeft = 75
 CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName)
@@ -90,13 +90,13 @@ plt.figure()
 tp.plot_traj(t1)
 '''
 # %% Link trajectory
-searchRange = 100
+searchRange = 70
 memory = 30
 minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
 minFrames = 20
-minDistance = 2000
+minDistance = 200
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 #t = t[t['particle'] == 5]
@@ -121,7 +121,7 @@ tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
 searchRange = 80
-memory = 20
+memory = 60
 minFrames = 100
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
