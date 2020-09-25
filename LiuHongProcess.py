@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 0
+index = 1
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -26,7 +26,7 @@ testFrame = 31
 
 
 # %% define feature detect function
-def Detect(estimateFeatureSize, CameraName):
+def Detect(estimateFeatureSize, CameraName, minMass = None):
     ImagePath = os.path.join('data', CaseName.split('-')[0], CaseName.split('-')[1])
     Path = os.path.join(ImagePath, CameraName + '*.tif')
     frames = pims.open(Path)
@@ -36,10 +36,11 @@ def Detect(estimateFeatureSize, CameraName):
         print('Invalid frames length')
         return
     # find five brightest
-    f = tp.locate(frames[testFrame], estimateFeatureSize)
-    mass = list(f['mass']); mass.sort()
-    minMass = (int((mass[-2]*0.9 + mass[-1])*0.1))
-    print(minMass)
+    if not minMass:
+        f = tp.locate(frames[testFrame], estimateFeatureSize)
+        mass = list(f['mass']); mass.sort()
+        minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
+        print(minMass)
     #TopTen = np.argsort(f['mass'])[-5:]
     #TopTenArray = f['mass'][TopTen]
     # show mass histogram
@@ -56,7 +57,7 @@ def Link(searchRange, memory, minFrames):
     t = tp.link(f, search_range = searchRange, memory = memory)
     t1 = tp.filter_stubs(t, minFrames)
     plt.figure()
-    tp.plot_traj(t1)
+    tp.plot_traj(t1, label = True)
     return t1
 # filter the trajectory
 def filterTrajectory(t1, minDistance, minFrames):
@@ -76,11 +77,20 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 75
+estimateFeatureSizeLeft = 61
 CameraName = 'Left'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeLeft, CameraName)
+f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = minMass)
 # %% test prediction
+
+# %% test minMass . If link is not good , recheck the minMass
+f1 = tp.locate(frames[A], estimateFeatureSizeLeft)
+plt.figure()
+tp.annotate(f1, frames[A])
+mass = list(f1['mass']); mass.sort()
+minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
+print(minMass)
+
 '''
 pred = tp.predict.NearestVelocityPredict()
 t = pred.link_df(f,40,memory=20)
@@ -90,9 +100,10 @@ plt.figure()
 tp.plot_traj(t1)
 '''
 # %% Link trajectory
+f = f[['y', 'x', 'frame']]
 searchRange = 70
 memory = 30
-minFrames = 20
+minFrames = 1
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
 minFrames = 20
@@ -115,18 +126,19 @@ plt.figure()
 tp.annotate(f1, frames[2]);
 
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 23
+estimateFeatureSizeRight = 41
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
-searchRange = 80
+f = f[['y', 'x', 'frame']]
+searchRange = 100
 memory = 60
 minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
-minFrames = 50
-minDistance = 1000
+minFrames = 10
+minDistance = 10
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 tp.plot_traj(t)
