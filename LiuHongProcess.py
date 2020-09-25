@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 1
+index = 3
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -80,7 +80,7 @@ def filterTrajectory(t1, minDistance, minFrames):
 estimateFeatureSizeLeft = 61
 CameraName = 'Left'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = minMass)
+f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None)
 # %% test prediction
 
 # %% test minMass . If link is not good , recheck the minMass
@@ -126,14 +126,14 @@ plt.figure()
 tp.annotate(f1, frames[2]);
 
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 41
+estimateFeatureSizeRight = 39
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName)
 # %%
 f = f[['y', 'x', 'frame']]
 searchRange = 100
-memory = 60
+memory = 10
 minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
