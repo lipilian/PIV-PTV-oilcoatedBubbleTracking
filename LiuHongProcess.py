@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 3
+index = 8
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -26,7 +26,7 @@ testFrame = 31
 
 
 # %% define feature detect function
-def Detect(estimateFeatureSize, CameraName, minMass = None):
+def Detect(estimateFeatureSize, CameraName, minMass = None, dynamicMinMass = False):
     ImagePath = os.path.join('data', CaseName.split('-')[0], CaseName.split('-')[1])
     Path = os.path.join(ImagePath, CameraName + '*.tif')
     frames = pims.open(Path)
@@ -50,7 +50,16 @@ def Detect(estimateFeatureSize, CameraName, minMass = None):
     plt.figure()
     tp.annotate(f, frames[testFrame]);
     # run batch processing for all frames
-    f = tp.batch(frames, estimateFeatureSize, minmass = minMass)
+    if dynamicMinMass:
+        f = f[0:0]
+        for i in range(len(frames)):
+            f_ele = tp.locate(frames[i], estimateFeatureSize)
+            mass = list(f_ele['mass']); mass.sort()
+            minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
+            f_ele = tp.locate(frames[i], estimateFeatureSize, minmass = minMass)
+            f = f.append(f_ele)
+    else:
+        f = tp.batch(frames, estimateFeatureSize, minmass = minMass)
     return f, frames
 # define link function
 def Link(searchRange, memory, minFrames):
@@ -77,19 +86,22 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 61
+estimateFeatureSizeLeft = 55
 CameraName = 'Left'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None)
+f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None, dynamicMinMass = True)
 # %% test prediction
 
 # %% test minMass . If link is not good , recheck the minMass
-f1 = tp.locate(frames[A], estimateFeatureSizeLeft)
+estimateFeatureSizeLeft = 55
+f1 = tp.locate(frames[56], estimateFeatureSizeLeft)
 plt.figure()
-tp.annotate(f1, frames[A])
+tp.annotate(f1, frames[56])
 mass = list(f1['mass']); mass.sort()
 minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
-print(minMass)
+f1 = tp.locate(frames[56], estimateFeatureSizeLeft, minMass)
+plt.figure()
+tp.annotate(f1, frames[56]);
 
 '''
 pred = tp.predict.NearestVelocityPredict()
@@ -103,11 +115,11 @@ tp.plot_traj(t1)
 f = f[['y', 'x', 'frame']]
 searchRange = 70
 memory = 30
-minFrames = 1
+minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
 minFrames = 20
-minDistance = 200
+minDistance = 1000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 #t = t[t['particle'] == 5]
@@ -121,24 +133,24 @@ print('There are %d trajectories' % len(listParticle))
 
 
 # %% ---------------------------------------- Right Camera
-f1 = tp.locate(frames[2], estimateFeatureSizeRight, 12000)
+f1 = tp.locate(frames[87], 21, 7000)
 plt.figure()
-tp.annotate(f1, frames[2]);
+tp.annotate(f1, frames[87]);
 
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 39
+estimateFeatureSizeRight = 21
 CameraName = 'Right'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeRight, CameraName)
+f, frames = Detect(estimateFeatureSizeRight, CameraName, dynamicMinMass = True)
 # %%
 f = f[['y', 'x', 'frame']]
 searchRange = 100
-memory = 10
-minFrames = 20
+memory = 40
+minFrames = 40
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
 minFrames = 10
-minDistance = 10
+minDistance = 100
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 tp.plot_traj(t)
