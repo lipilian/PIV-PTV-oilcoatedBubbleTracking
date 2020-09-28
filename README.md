@@ -29,7 +29,9 @@
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
 | ------------ | ------------ | ----------------------- | -------- | ---- | ------------ | ----------- | -------------------- | ------------------- |
 | 8G           | 22G          | 10                      | 4.04     | 0.08 | 1082210X-2   | 3.92869399  | <ul><li>- [x] finished </li>                   |  711-899 (The last frame is around 890 for bubble hitting the top edge, which may caused piv data missing about induced vortex)                  |
-| 8G           | 22G          | 10                      | 4.04     | 0.08 | 1082210X-3   | 3.92755005  | <ul><li>- [x] Left seperate trajectory, try Link(09/25/2020) Solved (09/25/2020) Double check when process matlab code </li>                     |1024-1349                     |
+| 8G           | 22G          | 10                      | 4.04     | 0.08 | 1082210X-3   | 3.92755005  | <ul><li>- [x] Left seperate trajectory, try Link(09/25/2020) Solved (09/25/2020) <div class="text-green mb-2 ml-4">
+  Fully solved (09/25/2020)
+</div> </li>                     |1024-1349                     |
 | 8G           | 22G          | 20                      | 4.01     | 0.22 | 1082220X-1   | 3.8863055   | <ul><li>- [x] double check right camera 2 traj (09/25/2020) </li>                     |129-449                     |
 | 8G           | 22G          | 20                      | 4.01     | 0.22 | 1082220X-3   | 3.88859096  | <ul><li>- [x] Left Camera 2 trajs (09/25/2020) </li>                    |1056-1349                     |
 | 8G           | 22G          | 30                      | 4.08     | 0.31 | 1082230X-1   | 3.96551573  | <ul><li>- [x] finished </li>                     |190-449                     |
