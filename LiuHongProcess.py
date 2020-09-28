@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 3
+index = 6
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
