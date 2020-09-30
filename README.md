@@ -43,7 +43,7 @@
 | 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-2  | 7.028534846 | <ul><li>- [x] finished </li>                    |603-899                     |
 | 10G          | 22G          | 6.42                    | 4.07     | 0.05 | 10010226X-4  | 6.219493989 | <ul><li>- [x] finished </li>                     |1509-1799                     |
 | 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-1 | 13.3943055  | <ul><li>- [x] This case has some problems about LeftCamera PTV tracking, need to double check later (09/24/2020)</li> **Solved** (09/28/2020)                   |148-449                     |
-| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [ ] Similar problem as above case (09/24/2020)</li>                     |1067-1349                     |
+| 10G          | 22G          | 13                      | 4.04     | 0.14 | 100102213X-3 | 14.34755593 | <ul><li>- [x] Similar problem as above case (09/24/2020)</li>  **Solved** (09/28/2020)                   |1067-1349                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-2 | 24.65708158 | <ul><li>- [x] finished </li>                    |591-899                     |
 | 10G          | 22G          | 25.89                   | 4        | 0.21 | 100102226X-3 | 19.83963865 | <ul><li>- [x] finished </li>                    | 1079-1349                    |
 | 10G          | 22G          | 30.49                   | 4.04     | 0.32 | 100102230X-2 | 29.53605068 | <ul><li>- [x] Right Camera tracking get 2 trajectories, need furthur computing (09/24/2020) </li>                     |612-899                     |
