@@ -17,7 +17,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 data
 # %%
-index = 15
+index = 19
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -86,22 +86,22 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 57
+estimateFeatureSizeLeft = 31
 CameraName = 'Left'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None, dynamicMinMass = True)
 # %% test prediction
 
 # %% test minMass . If link is not good , recheck the minMass
-estimateFeatureSizeLeft = 55
-f1 = tp.locate(frames[56], estimateFeatureSizeLeft)
+estimateFeatureSizeLeft = 61
+f1 = tp.locate(frames[148], estimateFeatureSizeLeft)
 plt.figure()
-tp.annotate(f1, frames[56])
+tp.annotate(f1, frames[148])
 mass = list(f1['mass']); mass.sort()
 minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
-f1 = tp.locate(frames[56], estimateFeatureSizeLeft, minMass)
+f1 = tp.locate(frames[148], estimateFeatureSizeLeft, minMass)
 plt.figure()
-tp.annotate(f1, frames[56]);
+tp.annotate(f1, frames[148]);
 
 '''
 pred = tp.predict.NearestVelocityPredict()
@@ -113,13 +113,13 @@ tp.plot_traj(t1)
 '''
 # %% Link trajectory
 f = f[['y', 'x', 'frame']]
-searchRange = 70
+searchRange = 90
 memory = 30
 minFrames = 20
 t = Link(searchRange, memory, minFrames)
 # %% filter trajectory by minimum moving distance
 minFrames = 20
-minDistance = 100
+minDistance = 2000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 #t = t[t['particle'] == 5]
@@ -138,19 +138,19 @@ plt.figure()
 tp.annotate(f1, frames[87]);
 
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 39
+estimateFeatureSizeRight = 31
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName, dynamicMinMass = True)
 # %%
 f = f[['y', 'x', 'frame']]
-searchRange = 100
+searchRange = 70
 memory = 40
 minFrames = 40
 t = Link(searchRange, memory, minFrames)
 # %%  filter trajectory by minimum moving distance
 minFrames = 10
-minDistance = 100
+minDistance = 1000
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
 tp.plot_traj(t)
