@@ -52,10 +52,10 @@
 | 12G          | 22G          | 32.68                   | 4.27     | 0.43 | 100122233X-3 | 31.43128391 | <ul><li>- [x] finished </li>                    |1075-1349                     |
 | 14G          | 22G          | 30                      | 4.45     | 0.6  | 100142230X-2 | 33.45791889 | <ul><li>- [x] finished </li>                    |576-899                     |
 | 14G          | 22G          | 30                      | 4.45     | 0.6  | 100142230X-3 | 31.61035021 | <ul><li>- [x] finished </li>                     |1019-1349                     |
-|              |              |                         |          |      | airbubble-1  |             | <ul><li>- [ ] finished For Left Camera the bubble deformed a lot at the begining, and the bubble size is around 75 pixel, too large. Hence at the begining, there are 2 trajectories, need further process to combien to one. All air bubble cases have similar problem. Will try region crop. (09/25/2020) </li>                      |     199-449                |
-|              |              |                         |          |      | airbubble-2  |             |  <ul><li>- [ ] finished </li>                    |638-899                     |
-|              |              |                         |          |      | airbubble-3  |             | <ul><li>- [ ] finished </li>                     |1071-1349                     |
-|              |              |                         |          |      | airbubble-4 |             | <ul><li>- [ ] finished </li>                      |1515-1799                     |
+|              |              |                         |          |      | airbubble-1  |             | <ul><li>- [x] finished For Left Camera the bubble deformed a lot at the begining, and the bubble size is around 75 pixel, too large. Hence at the begining, there are 2 trajectories, need further process to combien to one. All air bubble cases have similar problem. Will try region crop. (09/25/2020) </li>  **Solved** （09/30/2020）                   |     199-449                |
+|              |              |                         |          |      | airbubble-2  |             |  <ul><li>- [x] finished </li>                    |638-899                     |
+|              |              |                         |          |      | airbubble-3  |             | <ul><li>- [x] finished </li>  Left has 2 traj, should be solved by matlab code (09/30/2020)                   |1071-1349                     |
+|              |              |                         |          |      | airbubble-4 |             | <ul><li>- [x] finished </li>                      |1515-1799                     |
 
 
 
