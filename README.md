@@ -17,7 +17,7 @@
 4)	Sharpen the contrast: ‘process-‘enhance contrast’-‘saturated pixels:0.3%’
 5)	Save filtered sequence: ‘file’-‘save as’-‘image sequence’-‘format:jpeg’
 
-- [ ] PTV point detection, Gaussian kernel blob detection.
+- [x] PTV point detection, Gaussian kernel blob detection.
 1) Face the problem about the laser light too light for some frames that it hard to detect the blob shape for certain case, which cause trajectory divergent and mixing. <ul><li>- [x]  </li> solved 09/24/2020 by using predictor method, which use the recently nearby velocity to predict the next frame bubble location. For each case, the bubble size need to be rechecked by applying imageJ local maximum detection.
 - [ ] Trajectory computing.
 
