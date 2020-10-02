@@ -19,8 +19,8 @@
 
 - [x] PTV point detection, Gaussian kernel blob detection.
 1) Face the problem about the laser light too light for some frames that it hard to detect the blob shape for certain case, which cause trajectory divergent and mixing. <ul><li>- [x]  </li> solved 09/24/2020 by using predictor method, which use the recently nearby velocity to predict the next frame bubble location. For each case, the bubble size need to be rechecked by applying imageJ local maximum detection.
-- [ ] Trajectory computing.
-
+- [x] Trajectory computing.
+Bubble case 3 failed.
 - [ ] PIV-PTV Combine.
 
 - [ ] Trajectory analysis.

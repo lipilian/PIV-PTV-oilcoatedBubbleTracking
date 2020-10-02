@@ -299,7 +299,6 @@ function [ tracks adjacency_tracks A ] = simpletracker(points, varargin)
         if length(find(A(:,i))) == 0 %#ok<ISMT>
             cells_without_source = [ cells_without_source ; i ]; %#ok<AGROW>
         end
-        i/size(A,2)
     end
     
     n_tracks = numel(cells_without_source);
@@ -320,7 +319,6 @@ function [ tracks adjacency_tracks A ] = simpletracker(points, varargin)
         end
         
         adjacency_tracks{i} = tmp_holder ( ~isnan(tmp_holder) );
-        i/n_tracks+1
     end
     
     %% Reparse adjacency track index to have it right.
@@ -354,7 +352,6 @@ function [ tracks adjacency_tracks A ] = simpletracker(points, varargin)
         end
         
         tracks{i} = track;
-        i/n_tracks+2
         
     end
     
