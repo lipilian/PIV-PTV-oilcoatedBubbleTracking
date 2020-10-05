@@ -23,7 +23,7 @@ OuterNeedle,InnerNeedle,InitialOilVolume__L_,deq_mm_,foil,ID,deq,StartFrame_EndF
 12G,22G,32.68,4.27,0.43,100122233X-3,31.43128391,1075-1349,0,
 14G,22G,30,4.45,0.6,100142230X-2,33.45791889,576-899,0,
 14G,22G,30,4.45,0.6,100142230X-3,31.61035021,1019-1349,23,
-,,NaN,NaN,NaN,AirBubble-1,NaN,199-449,0,
-,,NaN,NaN,NaN,AirBubble-2,NaN,638-899,0,
-,,NaN,NaN,NaN,AirBubble-3,NaN,1071-1349,NaN,NotWorking
-,,NaN,NaN,NaN,AirBubble-4,NaN,1515-1799,0,
+,,NaN,NaN,0,AirBubble-1,NaN,199-449,0,
+,,NaN,NaN,0,AirBubble-2,NaN,638-899,0,
+,,NaN,NaN,0,AirBubble-3,NaN,1071-1349,NaN,NotWorking
+,,NaN,NaN,0,AirBubble-4,NaN,1515-1799,0,
