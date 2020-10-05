@@ -21,7 +21,15 @@
 1) Face the problem about the laser light too light for some frames that it hard to detect the blob shape for certain case, which cause trajectory divergent and mixing. <ul><li>- [x]  </li> solved 09/24/2020 by using predictor method, which use the recently nearby velocity to predict the next frame bubble location. For each case, the bubble size need to be rechecked by applying imageJ local maximum detection.
 - [x] Trajectory computing.
 Bubble case 3 failed.
-1) Top view of trajectory. [data](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
+1) Top view of trajectory in [TopViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), please use the password I send you to access the data.
+
+If you can't open the matlab figure file Try these two lines code in matlab:
+eg.
+
+>>fig = openfig('Graph.fig');
+
+>>set(fig, 'Visible', 'on')
+
 
 
 - [ ] PIV-PTV Combine.
