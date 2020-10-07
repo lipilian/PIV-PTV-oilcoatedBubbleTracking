@@ -34,7 +34,10 @@ eg.
 
 - [ ] PIV-PTV Combine.
 
-- [ ] Trajectory analysis.
+- [ ] Trajectory analysis. **Start** (10/07/2020)
+
+1) - [x] PCA best fit plane finding.
+
 
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
