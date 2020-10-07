@@ -36,8 +36,13 @@ eg.
 
 - [ ] Trajectory analysis. **Start** (10/07/2020)
 
-1) - [x] PCA best fit plane finding.
+1) trajectory analysis
 
+    - [x] PCA best fit plane finding.
+
+Update [TopViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the projection 2D plane function are shown in x label for each figure, and plotted as red line in the figure.(10/07/2020).
+
+2) - [x] velocity analysis.
 
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
