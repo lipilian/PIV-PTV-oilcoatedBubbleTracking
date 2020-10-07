@@ -52,6 +52,7 @@ Update [SideViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87m
 
 Velocity profile [VelocityProfile](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the u, v hortizontal velocity of camera view plane; w is the vertical velocity. Speed is the overall velocity. (10/07/2020)
 
+- [] vertical and transverse average speed with oil fraction for each case.
 
 
 
