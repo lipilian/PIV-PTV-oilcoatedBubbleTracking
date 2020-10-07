@@ -40,9 +40,13 @@ eg.
 
     - [x] PCA best fit plane finding.
 
-Update [TopViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the projection 2D plane function are shown in x label for each figure, and plotted as red line in the figure.(10/07/2020).
+Update [TopViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the projection 2D plane function are shown in x label for each figure, and plotted as red line in the figure.(10/07/2020). The red arrow represents the view point of the following figures for 2D fit plane.
 
-2) - [x] velocity analysis.
+    - [x] Side 2d view of trajectory on best fit plane.
+
+Update [SideViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the side view is 3D trajectory which are viewed from norm vector of best fitting 2D Plane.
+
+2) - [] velocity analysis.
 
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
