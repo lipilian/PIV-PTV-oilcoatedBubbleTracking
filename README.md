@@ -48,9 +48,12 @@ Update [SideViewTraj folder](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87m
 
 2) velocity analysis.
 
-- [x] Transverse speed, vertical speed, and total speed.
+- [x] Transverse velocity, vertical speed, and total speed.
 
 Velocity profile [VelocityProfile](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn), the u, v hortizontal velocity of camera view plane; w is the vertical velocity. Speed is the overall velocity. (10/07/2020)
+
+- [x] Transerse speed
+Transerse speed with vertical speed [TransverseSpeed](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn). **I found a very interesting behavior about damping. For higher oil fraction, the damping motion start disspiating, and higher viscousity oil will trigger it much earlier. My guess this motion of oil with in the bubble can balance the vortex induced vibration. Higher oil fraction have higher inertia and momantum. And lower viscousity oil can be easier to move inside the bubble, which can balance this vibration motion.** Based on this, we can study **actual damping motion, wavelet analysis, Hilbert transform.**
 
 - [] vertical and transverse average speed with oil fraction for each case.
 
