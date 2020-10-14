@@ -34,7 +34,7 @@ eg.
 
 - [ ] PIV-PTV Combine.
 
-- [ ] Trajectory analysis. **Start** (10/07/2020)
+- [x] Trajectory analysis. **Start** (10/07/2020)
 
 1) trajectory analysis
 
@@ -61,9 +61,21 @@ Vertical velocity plot with error bar for two cases average.
 
 3) frequency analysis
 
-- [x] Calualte instantaneous frequency based on first conditional spectral moment.
+- [x] 
+Calualte instantaneous frequency based on first conditional spectral moment.
 Overall frequency seems to decrease when oil fraction increase. But pure air bubble also has low frequency. **Hard to conclude** Need discuss. (10/09/2020)
 [freqAnalysis](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
+Update the freq vs oil fraction plot. (10/14/2020) [freqAnalysis](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
+
+(shot time Fourier transform)
+- Compute spectrogram power spectrum P(t,f).
+- Estimate the joint time-frequency moment.
+
+4) Amplitude analysis 
+
+- [ ] velocity amplitude
+
+- [ ] Position amplitude
 
 
 # Overall process progress report
