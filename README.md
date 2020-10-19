@@ -73,11 +73,13 @@ Update the freq vs oil fraction plot. (10/14/2020) [freqAnalysis](https://uofi.b
 
 4) Amplitude analysis 
 
-- [ ] velocity amplitude
 
 - [x] Position amplitude. (10/14/2020) FFT only work for periodic case, for dissipation case. May be we can use underdamping function fitting method to calculate the trend of amplitude. 
 For some case the projection to 2D Plane method didn't work vary well to detection the main amplitude. Maybe due to the small disturbance from 3D, which is consistant with top view. (For example, some case the amplitude peak from frequency domain is not that obvious. I chekc their top view, it is much more like 3D trajectory.)[TransversePositionAmplitude](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
 
+- [x] Fit underdamped harmonic oscillator to the model. Red line indicate the fitting curve, blue line is the original data.
+[DampingAmplitude](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
+(10/19/2020)
 
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
