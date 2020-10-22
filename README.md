@@ -81,6 +81,8 @@ For some case the projection to 2D Plane method didn't work vary well to detecti
 [DampingAmplitude](https://uofi.box.com/s/sw9vvcwwh0pjfxlhspk6wisby87mabtn)
 (10/19/2020)
 
+- [x] remake 5 airbubble tracking experiment. This time, use regionprops for tracking. (10/22/2022)
+
 # Overall process progress report
 | Outer needle | Inner needle | Initial oil volume (?L) | deq (mm) | foil | ID           | deq         |  Processing Progress | StartFrame-EndFrame |
 | ------------ | ------------ | ----------------------- | -------- | ---- | ------------ | ----------- | -------------------- | ------------------- |
