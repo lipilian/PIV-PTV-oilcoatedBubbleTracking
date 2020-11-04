@@ -10,9 +10,10 @@ from tqdm import tqdm
 data = pd.read_csv('experiment_info.csv')
 fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
-
+# %%
 rawPath = 'E:/BubbleRisingUltimate/BubbleRising'
-for k in tqdm(range(len(fileNames))):
+for k in tqdm(range(28,34)):
+# for k in tqdm(range(len(fileNames))):
     filename = fileNames[k]
     frameInfo = framesInfo[k]
     startFrame = int(frameInfo.split('-')[0])

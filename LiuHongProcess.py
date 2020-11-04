@@ -15,14 +15,13 @@ import os
 data = pd.read_csv('experiment_info.csv')
 fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
-data
 # %%
-index = 27
+index = 33
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
 endFrame = int(framesInfo[index].split('-')[1])
-testFrame = 31
+testFrame =61
 
 
 # %% define feature detect function
@@ -86,22 +85,22 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 25
+estimateFeatureSizeLeft = 53
 CameraName = 'Left'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None, dynamicMinMass = True)
+f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None, dynamicMinMass = False)
 # %% test prediction
 
 # %% test minMass . If link is not good , recheck the minMass
-estimateFeatureSizeLeft = 61
+estimateFeatureSizeLeft = 25
 f1 = tp.locate(frames[148], estimateFeatureSizeLeft)
 plt.figure()
 tp.annotate(f1, frames[148])
 mass = list(f1['mass']); mass.sort()
 minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
-f1 = tp.locate(frames[148], estimateFeatureSizeLeft, minMass)
+f1 = tp.locate(frames[61], estimateFeatureSizeLeft, minMass)
 plt.figure()
-tp.annotate(f1, frames[148]);
+tp.annotate(f1, frames[61]);
 
 '''
 pred = tp.predict.NearestVelocityPredict()
@@ -138,7 +137,7 @@ plt.figure()
 tp.annotate(f1, frames[87]);
 
 # %% run trajectory finding for Right
-estimateFeatureSizeRight = 29
+estimateFeatureSizeRight = 39
 CameraName = 'Right'
 tp.quiet()
 f, frames = Detect(estimateFeatureSizeRight, CameraName, dynamicMinMass = True)
