@@ -12,7 +12,7 @@ fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 # %%
 rawPath = 'E:/BubbleRisingUltimate/BubbleRising'
-for k in tqdm(range(28,34)):
+for k in tqdm(range(33,35)):
 # for k in tqdm(range(len(fileNames))):
     filename = fileNames[k]
     frameInfo = framesInfo[k]

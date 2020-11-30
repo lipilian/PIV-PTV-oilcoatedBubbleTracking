@@ -131,6 +131,10 @@ Excel sheet for vertical speed, transverse speed, freq information, Bing will ad
 |              |              |                         |          |      | airbubble-2  |             |  <ul><li>- [x] finished </li>                    |638-899                     |
 |              |              |                         |          |      | airbubble-3  |             | <ul><li>- [x] finished </li>  Left has 2 traj, should be solved by matlab code (09/30/2020)   wasted (10/02/2020)                |1071-1349                     |
 |              |              |                         |          |      | airbubble-4 |             | <ul><li>- [x] finished </li>                      |1515-1799                     |
-
-
-
+|              |              |                         |          |      | 1082220X-2 |             | <ul><li>- [x] finished </li>                      |600-899                     |
+|              |              |                         |          |      | 1082230X-3 |             | <ul><li>- [x] finished </li>                      |1088-1349                    |
+|              |              |                         |          |      | 10142220X-2 |             | <ul><li>- [x] finished </li>                      |554-899                    |
+|              |              |                         |          |      | 10010226X-3 |             | <ul><li>- [x] finished </li>                      |1040-1349                    |
+|              |              |                         |          |      |100102230X-1|             | <ul><li>- [x] finished </li>                      |142-449                    |
+|              |              |                         |          |      |100102213X-2 |             | <ul><li>- [ ] finished </li>                      |603-899                     |
+|              |              |                         |          |      | 100102226X-1 |             | <ul><li>- [ ] finished </li>                      |162-449                   |

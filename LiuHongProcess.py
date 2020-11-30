@@ -16,7 +16,7 @@ data = pd.read_csv('experiment_info.csv')
 fileNames = list(data['ID'])
 framesInfo = list(data['StartFrame-EndFrame'])
 # %%
-index = 33
+index = 34
 CaseName = fileNames[index]
 print(CaseName)
 startFrame = int(framesInfo[index].split('-')[0])
@@ -25,10 +25,13 @@ testFrame =61
 
 
 # %% define feature detect function
-def Detect(estimateFeatureSize, CameraName, minMass = None, dynamicMinMass = False):
+
+def Detect(estimateFeatureSize, CameraName, minMass = None, dynamicMinMass = False, Crop = False):
     ImagePath = os.path.join('data', CaseName.split('-')[0], CaseName.split('-')[1])
     Path = os.path.join(ImagePath, CameraName + '*.tif')
     frames = pims.open(Path)
+    if Crop:
+        frames = pims.process.crop(frames, ((400,700),(0,0)))
     print('Valid frames length is %d' %len(frames))
     # check start frame and end frame with total frames number
     if len(frames) != (endFrame - startFrame + 1):
@@ -85,19 +88,20 @@ def filterTrajectory(t1, minDistance, minFrames):
 
 
 # %% run trajectory finding ------------------------------Left
-estimateFeatureSizeLeft = 53
+estimateFeatureSizeLeft = 51
 CameraName = 'Left'
 tp.quiet()
-f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = None, dynamicMinMass = False)
+f, frames = Detect(estimateFeatureSizeLeft, CameraName, minMass = 150000, dynamicMinMass = False, Crop = True)
 # %% test prediction
 
+
 # %% test minMass . If link is not good , recheck the minMass
-estimateFeatureSizeLeft = 25
+estimateFeatureSizeLeft = 51
 f1 = tp.locate(frames[148], estimateFeatureSizeLeft)
 plt.figure()
 tp.annotate(f1, frames[148])
 mass = list(f1['mass']); mass.sort()
-minMass = int(mass[-2]*0.9 + mass[-1]*0.1)
+minMass = int(mass[-3]*0.9 + mass[-1]*0.1)
 f1 = tp.locate(frames[61], estimateFeatureSizeLeft, minMass)
 plt.figure()
 tp.annotate(f1, frames[61]);
@@ -121,7 +125,7 @@ minFrames = 20
 minDistance = 500
 t = filterTrajectory(t, minDistance, minFrames)
 plt.figure()
-#t = t[t['particle'] == 5]
+#t = t[t['particle'] == 1]
 tp.plot_traj(t, label = True)
 
 t.to_csv('./' + CaseName + 'Left.csv')
