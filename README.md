@@ -39,6 +39,7 @@ test adding mass effect,
 sloshing effect,
 for the trajectory frequency change. (10/28/2020)
 
+- Start processing the vorticity. (11/30/2020)
 
 - [x] Trajectory analysis. **Start** (10/07/2020)
 
